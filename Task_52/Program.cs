@@ -8,7 +8,7 @@
 // 8 4 2 4
 // Среднее арифметическое каждого
 // столбца: |4,6| |5,6| |3,6| |3,0|
-
+// 1 СПОСОБ -------------------------------------------------------------------
 Console.Clear();
 int m = Prompt("Введите кол-во строк");
 int n = Prompt("Введите кол-во столбцов");
@@ -18,8 +18,9 @@ int[,] array1 = GetArray(m, n);
 //выводим его на экран
 PrintArray(array1);
 Console.WriteLine();
+Console.WriteLine("Вариант 1 ");
 //транспонируем заданный массив случайных чисел
-int[,] array2 = TransposedArray(n,m);
+int[,] array2 = TransposedArray(n, m);
 //находим среднее арифметическое
 int[,] array3 = new int[n, m];
 for (int i = 0; i < array3.GetLength(0); i++)
@@ -31,9 +32,15 @@ for (int i = 0; i < array3.GetLength(0); i++)
         sum = array2[i, j] + sum;
         count++;
     }
+
     Console.Write($"|{Math.Round((sum / count), 2)}| ");
 }
+// 2 СПОСОБ -------------------------------------------------------------------
+Console.WriteLine();
+Console.WriteLine("Вариант 2 ");
 
+double [] array4 = GetNewArray(array1);
+Console.WriteLine(String.Join("|", array4));
 //-----------------------------------------------------------------------------
 int Prompt(string message)
 {
@@ -78,4 +85,19 @@ int[,] TransposedArray(int m, int n)
         }
     }
     return array2;
+}
+
+double[] GetNewArray(int[,] array)
+{
+    double[] massiv = new double[array.GetLength(1)];
+    for (int j = 0; j < array.GetLength(1); j++)
+    {
+        double sum = 0;
+        for (int i = 0; i < array.GetLength(0); i++)
+        {
+            sum += array[i, j];
+        }
+        massiv[j] = Math.Round(sum / array.GetLength(0), 2);
+    }
+    return massiv;
 }
