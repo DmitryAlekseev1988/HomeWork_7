@@ -16,7 +16,7 @@ int find = Prompt("Введите искомый элемент");
 int[,] array1 = GetArray(m, n);
 PrintArray(array1);
 Console.WriteLine("");
-
+// Проверка, существует ли элемент в массиве
 bool finded = false;
 
 int[,] array2 = new int[m, n];
