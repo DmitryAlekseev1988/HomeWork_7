@@ -12,31 +12,35 @@
 Console.Clear();
 int m = Prompt("Введите кол-во строк");
 int n = Prompt("Введите кол-во столбцов");
-int find = Prompt("Введите позицию элемента по стороке ");
+int str = Prompt("Введите позицию элемента по стороке ");
+int column = Prompt("Введите позицию элемента по столбцу ");
 int[,] array1 = GetArray(m, n);
 PrintArray(array1);
 Console.WriteLine("");
-// Проверка, существует ли элемент в массиве
-bool finded = false;
+
+// вывод искомого элемента по индексу
+
+bool index = false;
+int element = 0;
 
 int[,] array2 = new int[m, n];
 for (int i = 0; i < array2.GetLength(0); i++)
 {
     for (int j = 0; j < array2.GetLength(1); j++)
     {
-        if (array1[i, j] == find)
+        if (i == str & j == column)
         {
-            finded = true;
+            index = true;
+            element = array1[i, j];
             break;
         }
-
     }
 }
 
-if (finded == true)
-    Console.Write($"{find} -> Такой элемент есть в массиве!");
+if (index == true)
+    Console.Write($"На позиции [{str},{column}] содержиться элемент [{element}]");
 else
-    Console.Write($"{find} -> Такого элемента нет");
+    Console.Write($"такой позиции не существует!");
 
 //-----------------------------------------------------------------------------
 int Prompt(string message)
@@ -65,7 +69,7 @@ int[,] GetArray(int m, int n)
     {
         for (int j = 0; j < array.GetLength(1); j++)
         {
-            array[i, j] = new Random().Next(1, 9);
+            array[i, j] = new Random().Next(-15, 15);
 
         }
     }
